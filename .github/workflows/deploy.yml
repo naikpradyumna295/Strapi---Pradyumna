@@ -31,8 +31,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            sudo su -
-            cd /root/my-project
+            cd /home/ubuntu/my-project
             git pull origin main
             npm install
             npm run build
