@@ -32,8 +32,10 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd /home/ubuntu/my-project
+            git config --global --add safe.directory /home/ubuntu/my-project
             git pull origin main
             npm install
             npm run build
-            pm2 restart strapi
+            pm2 start npm --name strapi -- run develop
+            pm2 save
 
