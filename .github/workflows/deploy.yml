@@ -3,7 +3,7 @@ name: Automatic Deployment
 on:
   push:
     branches:
-      - Pradyumna  # Replace with your branch name if different
+      - main  # Replace with your branch name if different
 
 jobs:
   deploy:
@@ -22,7 +22,11 @@ jobs:
       run: npm install
 
     - name: Validate configuration
-      run: node -e "require('./config/server.js'); require('./config/admin.js');"
+      run: |
+        echo "Validating server.js"
+        node -e "require('./config/server.js');"
+        echo "Validating admin.js"
+        node -e "require('./config/admin.js');"
 
     - name: Build project
       run: npm run build
